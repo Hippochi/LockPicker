@@ -22,7 +22,7 @@ public class LockPick : MonoBehaviour
         
         skill = Random.value;
         difficulty = Random.value;
-        time = 0.7f + (difficulty * 0.7f);
+        time = 0.5f + (difficulty * 0.7f);
         rounds = Random.Range(2, 5);
         chance = 0.1f + (difficulty * 0.3f);
         Prep();        
@@ -53,6 +53,7 @@ public class LockPick : MonoBehaviour
             keyBox.GetComponent<TextMeshProUGUI>().text = "[" + keyV + "]";
             yield return new WaitForSecondsRealtime(time);
             keyWindow = false;
+            keyBox.SetActive(false);
             Prep();
             StartCoroutine(Qte());
         }
@@ -123,107 +124,49 @@ public class LockPick : MonoBehaviour
     {
         if (Input.GetKeyDown("q"))
         {
-            keyBox.SetActive(false);
-            keyWindow = false;
-            if (isMatching(0))
-            {
-                chance += (.15f * (1 +(1 * skill))); 
-            }
-            else
-            {
-                chance -= (.1f - ( .1f* skill)); 
-            }
+            KeyBehaviour(0);
         }
         if (Input.GetKeyDown("w"))
         {
-            keyBox.SetActive(false);
-            keyWindow = false;
-            if (isMatching(1))
-            {
-                chance += (.15f * (1 + (1 * skill)));
-            }
-            else
-            {
-                chance -= (.1f - (.1f * skill));
-            }
+            KeyBehaviour(1);
         }
         if (Input.GetKeyDown("e"))
         {
-            keyBox.SetActive(false);
-            keyWindow = false;
-            if (isMatching(2))
-            {
-                chance += (.15f * (1 + (1 * skill)));
-            }
-            else
-            {
-                chance -= (.1f - (.1f * skill));
-            }
+            KeyBehaviour(2);
         }
         if (Input.GetKeyDown("r"))
         {
-            keyBox.SetActive(false);
-            keyWindow = false;
-            if (isMatching(3))
-            {
-                chance += (.15f * (1 + (1 * skill)));
-            }
-            else
-            {
-                chance -= (.1f - (.1f * skill)); 
-            }
+            KeyBehaviour(3);
         }
         if (Input.GetKeyDown("a"))
         {
-            keyBox.SetActive(false);
-            keyWindow = false;
-            if (isMatching(4))
-            {
-                chance += (.15f * (1 + (1 * skill))); 
-            }
-            else
-            {
-                chance -= (.1f - (.1f * skill)); 
-            }
+            KeyBehaviour(4);
         }
         if (Input.GetKeyDown("s"))
         {
-            keyBox.SetActive(false);
-            keyWindow = false;
-            if (isMatching(5))
-            {
-                chance += (.15f * (1 + (1 * skill)));
-            }
-            else
-            {
-                chance -= (.1f - (.1f * skill)); 
-            }
+            KeyBehaviour(5);
         }
         if (Input.GetKeyDown("d"))
         {
-            keyBox.SetActive(false);
-            keyWindow = false;
-            if (isMatching(6))
-            {
-                chance += (.15f * (1 + (1 * skill))); 
-            }
-            else
-            {
-                chance -= (.1f - (.1f * skill)); 
-            }
+            KeyBehaviour(6);
         }
         if (Input.GetKeyDown("f"))
         {
-            keyBox.SetActive(false);
-            keyWindow = false;
-            if (isMatching(7))
-            {
-                chance += (.15f * (1 + (1 * skill)));
-            }
-            else
-            {
-                chance -= (.1f - (.1f * skill));
-            }
+            KeyBehaviour(7);
+        }
+    }
+
+    void KeyBehaviour(int i)
+    {
+        keyBox.SetActive(false);
+        keyWindow = false;
+        if (isMatching(i))
+        {
+            chance += (.15f * (1 + (1 * skill)));
+        }
+        else
+        {
+            chance -= (.1f - (.1f * skill));
         }
     }
 }
